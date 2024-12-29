@@ -1,7 +1,3 @@
-Here's an optimized version of your `README.md`:
-
----
-
 # Multi-Picture-in-One-Page
 
 This project allows you to create a composite image from multiple smaller images. It is built with **HTML**, **CSS**, and **JavaScript**. While this approach may not be the most advanced, it is one of the simplest.
