@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,15 +15,18 @@
             height: 100vh;
             overflow: hidden;
         }
+
         #photo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             gap: 2px;
             width: 100vw;
-            height: 56.25vw; /* Maintain 16:9 ratio */
+            height: 56.25vw;
+            /* Maintain 16:9 ratio */
             max-height: 100vh;
             max-width: 177.78vh;
         }
+
         #photo-grid img {
             width: 100%;
             height: 100%;
@@ -30,6 +34,7 @@
         }
     </style>
 </head>
+
 <body>
     <div id="photo-grid"></div>
 
@@ -37,31 +42,20 @@
     <script>
         const photoGrid = document.getElementById('photo-grid');
 
-        // Add images from the ../ directory to the grid (fetch filenames dynamically)
-        async function loadImages() {
-            try {
-                const response = await fetch('../');
-                const text = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(text, 'text/html');
-                const links = Array.from(doc.querySelectorAll('a'));
+        // Replace file names here
+        const imagePaths = [
+           // Replace file names here
+        ];
+        
+        // 添加图片到photo-grid
+        imagePaths.forEach(path => {
+            const img = document.createElement('img');
+            img.src = path;
+            img.onerror = () => console.error(`Failed to load image: ${path}`);
+            photoGrid.appendChild(img);
+        });
 
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-                    if (href && (href.endsWith('.jpg') || href.endsWith('.png'))) {
-                        const img = document.createElement('img');
-                        img.src = `../${href}`;
-                        photoGrid.appendChild(img);
-                    }
-                });
-            } catch (error) {
-                console.error('Error loading images:', error);
-            }
-        }
-
-        loadImages();
-
-        // Listen for 'a' key press and export the grid as an image
+        // 按下 'a' 键导出图片
         document.addEventListener('keydown', async (event) => {
             if (event.key === 'a') {
                 try {
@@ -77,4 +71,5 @@
         });
     </script>
 </body>
+
 </html>
