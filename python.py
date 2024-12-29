@@ -15,7 +15,7 @@ def list_filenames(directory, output_file=None):
         print(f"An error occurred: {e}")
 
 # 修改为你的图片目录路径
-directory = "./"  # 替换为实际路径
-output_file = "filenames.txt"  # 可选，保存到文件；设置为 None 则只打印
+directory = "./"  
+output_file = "filenames.txt"  # 设置为 None 则只打印
 
 list_filenames(directory, output_file)
