@@ -47,7 +47,7 @@
            // Replace file names here
         ];
         
-        // 添加图片到photo-grid
+        // Add photos to photo-grid
         imagePaths.forEach(path => {
             const img = document.createElement('img');
             img.src = path;
@@ -55,7 +55,7 @@
             photoGrid.appendChild(img);
         });
 
-        // 按下 'a' 键导出图片
+        // export the whole page when 'a' is pressed
         document.addEventListener('keydown', async (event) => {
             if (event.key === 'a') {
                 try {
